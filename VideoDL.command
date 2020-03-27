@@ -41,15 +41,52 @@ echo -e "${GRN}██║   ██║██║██║  ██║█████
 echo -e "${GRN}╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║${NC}╚════╝ ${RED}██║  ██║██║     ${NC}";
 echo -e "${GRN} ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝${NC}       ${RED}██████╔╝███████╗${NC}";
 echo -e "${GRN}  ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝ ${NC}       ${RED}╚═════╝ ╚══════╝${NC}";
-echo "                                                                            ";
+echo "                                                                                     ";
 echo ""
 
-echo -e "**********************************"
-echo -e "*                                *"
-echo -e "*  ${B}Video Thief by ${RED}@MrRaymondVO${NC}  *"
-echo -e "*                                *"
-echo -e "**********************************"
+echo -e "*****************************"
+echo -e "*                           *"
+echo -e "*  ${B}VideoDL by ${RED}@MrRaymondVO${NC}  *"
+echo -e "*                           *"
+echo -e "*****************************"
 echo ""
+
+printHelp () {
+    echo -e "${bldgrn}"
+    echo -e "--------------------------------------------------------------------------------"
+    echo -e "${bldgrn}Help${NC}"
+    echo -e ""
+    echo -e "${undcyn}On Start${NC}"
+    echo -e "When the program starts you have the possibility of download a video quickly without any extra steps. You just have to copy the link of the video you want to download and paste it in the terminal and press enter. Below you will see how the video download starts to run."
+    echo -e "${undcyn}Full Install${NC}"
+    echo -e "It does a complete installation of all the necessary tools. You may be asked for the administrator password at some point durning the installation"
+    echo -e ""
+    echo -e "${undcyn}Command Line Tools${NC}"
+    echo -e "Download the macOS SDK, headers, and build tools such as the Apple LLVM compiler and Make. These tools make it easy to install open source software or develop on UNIX within Terminal. macOS can automatically download these tools the first time you try to build software, and they are available on the downloads page."
+    echo -e ""
+    echo -e "${undcyn}Homebrew${NC}"
+    echo -e "Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's macOS operating system and Linux. The name is intended to suggest the idea of building software on the Mac depending on the user's taste. "
+    echo -e "${bldgrn}"
+    echo -e ""
+    echo -e "${undcyn}YouTube-DL${NC}"
+    echo -e "youtube-dl is a command-line program to download videos from YouTube.com and a few more sites. It requires the Python interpreter, and it is not platform specific. We also provide a Windows executable that includes Python. youtube-dl should work in your Unix box, in Windows or in Mac OS X."
+    echo -e "${bldgrn}"
+    echo -e ""
+    echo -e "${undcyn}FFMpeg${NC}"
+    echo -e "FFmpeg is a free and open-source project consisting of a vast software suite of libraries and programs for handling video, audio, and other multimedia files and streams. At its core is the FFmpeg program itself, designed for command-line-based processing of video and audio files, and widely used for format transcoding, basic editing like trimming and concatenation, video scaling, video post-production effects, and standards compliance SMPTE, ITU."
+    echo -e "${bldgrn}"
+    echo -e "--------------------------------------------------------------------------------"
+    echo -e "${NC}"
+    echo -e "Press ${bldgrn}1${NC} to ${undgrn}continue${NC} or any other key for ${bldred}Quit: ${NC}"
+    read next
+    if [ $next = 1 ]; then
+        listToolsEn
+    elif [ $next = 2 ]; then
+        main
+    else
+        exit
+    fi
+}
 
 processCompleted () {
     echo -e "${GRN}"
@@ -95,14 +132,14 @@ instFFMPEG () {
 
 fastDl () {
     echo ""
-    echo -e "Paste the link or type ${bldylw}N${NC} to choose ${bldcyn}another option${NC}: "
+    echo -e "Paste the ${undwht}link of the video${NC} or type ${bldylw}1${NC} to choose ${bldcyn}another option${NC}: "
     read -e -p "" url
-    if [[ $next = "n" ]]; then
+    if [[ $url = 1 ]]; then
         main
     else
         command youtube-dl ${url}
+        downloadCompleted
     fi
-    downloadCompleted
     main
 }
 
@@ -117,18 +154,19 @@ main () {
         "Install YouTube-Dl"
         "Install FFMpeg"
         "Use YouTube-Dl to download a video"
+        "Help"
         "Quit"
         )
     select opt in "${options[@]}"
     do
         case $opt in
             "Full Install")
-                    instCLT
-                    instBrew
-                    instYTDL
-                    instFFMPEG
-                    processCompleted
-                    main
+                instCLT
+                instBrew
+                instYTDL
+                instFFMPEG
+                processCompleted
+                main
                 break
                 ;;
                 
@@ -136,37 +174,42 @@ main () {
                 instCLT
                 processCompleted
                 main
-            break
-            ;;
+                break
+                ;;
             
             "Install Homebrew")
                 instBrew
                 processCompleted
                 main
-            break
-            ;;
+                break
+                ;;
             
             "Install YouTube-Dl")
                 instYTDL
                 processCompleted
                 main
-            break
-            ;;
+                break
+                ;;
             
             "Install FFMpeg")
                 instFFMPEG
                 processCompleted
                 main
-            break
-            ;;
+                break
+                ;;
             
             "Use YouTube-Dl to download a video")
                 fastDl
                 processCompleted
                 main
-            break
-            ;;
-                
+                break
+                ;;
+            
+            "Help")
+                printHelp
+                break
+                ;;
+            
             "Quit")
                 banner -w 28 "Bye Bye"
                 exit
