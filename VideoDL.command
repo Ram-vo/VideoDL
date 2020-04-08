@@ -89,18 +89,34 @@ printHelp () {
 }
 
 processCompleted () {
-    echo -e "${GRN}"
-    echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
-    echo "|P r o c e s s   C o m p l e t e d|";
-    echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
-    echo -e "${NC}"
+    if [[ $? > 0 ]]; then
+        error
+    else
+        echo -e "${GRN}"
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo "|P r o c e s s   C o m p l e t e d|";
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo -e "${NC}"
+    fi
 }
 
 downloadCompleted () {
-    echo -e "${GRN}"
-    echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
-    echo "|D o w n l o a d   C o m p l e t e d|";
-    echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+    if [[ $? > 0 ]]; then
+        error
+    else
+        echo -e "${GRN}"
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo "|D o w n l o a d   C o m p l e t e d|";
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo -e "${NC}"
+    fi
+}
+
+error () {
+    echo -e "${RED}"
+    echo "+-+-+-+-+-+-+-+";
+    echo "|  E R R O R  |";
+    echo "+-+-+-+-+-+-+-+";
     echo -e "${NC}"
 }
 
@@ -113,7 +129,7 @@ instCLT () {
 instBrew () {
     echo -e "${GRN}Installing Homebrew${NC}"
     echo ""
-    mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
 instYTDL () {
@@ -138,9 +154,13 @@ fastDl () {
         main
     else
         command youtube-dl ${url}
-        downloadCompleted
+#        if [[ $? > 0 ]]; then
+#            error
+#        else
+            downloadCompleted
+#        fi
     fi
-    main
+    fastDl
 }
 
 main () {
