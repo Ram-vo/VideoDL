@@ -1,10 +1,11 @@
 #!/bin/bash
 
-#  MacCommandToolsCLT.command
-#  MacCommandTools
+#  VideoDL
 #
 #  Created by Ramon Valdes on 2020-03-14.
 #  Copyright © 2020 Ramon Valdes. All rights reserved.
+
+VERSION=1.0.2
 
 NC="\033[0;00m";
 RED='\033[0;31m';
@@ -16,7 +17,6 @@ CY='\033[01;36m';
 WT='\033[01;37m';
 B='\033[1m';
 UL='\033[4m';
-
 bldblk='\033[1;30m'; # Black - Bold
 bldred='\033[1;31m'; # Red
 bldgrn='\033[1;32m'; # Green
@@ -34,22 +34,35 @@ undpur='\033[4;35m'; # Purple
 undcyn='\033[4;36m'; # Cyan
 undwht='\033[4;37m'; # White
 
-echo ""
-echo -e "${GRN}██╗   ██╗██╗██████╗ ███████╗ ██████╗ ${NC}    ${RED}█████████╗ ██╗     ${NC}";
-echo -e "${GRN}██║   ██║██║██╔══██╗██╔════╝██╔═══██╗${NC}    ${RED}╚══██╔══██╗██║     ${NC}";
-echo -e "${GRN}██║   ██║██║██║  ██║█████╗  ██║   ██║${NC}█████╗ ${RED}██║  ██║██║     ${NC}";
-echo -e "${GRN}╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║${NC}╚════╝ ${RED}██║  ██║██║     ${NC}";
-echo -e "${GRN} ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝${NC}       ${RED}██████╔╝███████╗${NC}";
-echo -e "${GRN}  ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝ ${NC}       ${RED}╚═════╝ ╚══════╝${NC}";
-echo "                                                                                     ";
-echo ""
+bigTit () {
+    echo ""
+    echo -e "${GRN}██╗   ██╗██╗██████╗ ███████╗ ██████╗ ${NC}    ${RED}█████████╗ ██╗     ${NC}";
+    echo -e "${GRN}██║   ██║██║██╔══██╗██╔════╝██╔═══██╗${NC}    ${RED}╚══██╔══██╗██║     ${NC}";
+    echo -e "${GRN}██║   ██║██║██║  ██║█████╗  ██║   ██║${NC}█████╗ ${RED}██║  ██║██║     ${NC}";
+    echo -e "${GRN}╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║${NC}╚════╝ ${RED}██║  ██║██║     ${NC}";
+    echo -e "${GRN} ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝${NC}       ${RED}██████╔╝███████╗${NC}";
+    echo -e "${GRN}  ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝ ${NC}       ${RED}╚═════╝ ╚══════╝${NC}";
+    echo "                                                                                     ";
+    echo ""
+}
 
-echo -e "*****************************"
-echo -e "*                           *"
-echo -e "*  ${B}VideoDL by ${RED}@MrRaymondVO${NC}  *"
-echo -e "*                           *"
-echo -e "*****************************"
-echo ""
+credit () {
+    echo -e "*********************************************************************"
+    echo -e "*                                                                   *"
+    echo -e "*                    ${B}VideoDL v${VERSION} by ${RED}@MrRaymondVO${NC}                 *"
+    echo -e "*                                                                   *"
+    echo -e "*  ${B}Watch and star on GitHub to stay updated with upcoming releases  *"
+    echo -e "*                                                                   *"
+    echo -e "*        ${undcyn}https://github.com/MrRaymondVO/VideoDL/releases/${NC}           *"
+    echo -e "*                                                                   *"
+    echo -e "*********************************************************************"
+    echo ""
+}
+
+patreon () {
+    echo "https://www.patreon.com/mrraymond"
+}
+
 
 printHelp () {
     echo -e "${bldgrn}"
@@ -93,9 +106,9 @@ processCompleted () {
         error
     else
         echo -e "${GRN}"
-        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
-        echo "|P r o c e s s   C o m p l e t e d|";
-        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo "|                 P r o c e s s   C o m p l e t e d                 |";
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
         echo -e "${NC}"
     fi
 }
@@ -105,18 +118,18 @@ downloadCompleted () {
         error
     else
         echo -e "${GRN}"
-        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
-        echo "|D o w n l o a d   C o m p l e t e d|";
-        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+        echo "|               D o w n l o a d   C o m p l e t e d                 |";
+        echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
         echo -e "${NC}"
     fi
 }
 
 error () {
     echo -e "${RED}"
-    echo "+-+-+-+-+-+-+-+";
-    echo "|  E R R O R  |";
-    echo "+-+-+-+-+-+-+-+";
+    echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+    echo "|                             E R R O R                             |";
+    echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
     echo -e "${NC}"
 }
 
@@ -146,25 +159,177 @@ instFFMPEG () {
     command brew install ffmpeg
 }
 
+# DL
+# Fast Download
 fastDl () {
-    echo ""
-    echo -e "Paste the ${undwht}link of the video${NC} or type ${bldylw}1${NC} to choose ${bldcyn}another option${NC}: "
-    read -e -p "" url
+    echo -e "${NC}"
+    echo -e "Paste the ${undwht}link of the video${NC} or type ${bldgrn}1${NC} to choose ${bldcyn}another option${NC}: ${bldgrn}"
+    read -e -p "=> " url
+    echo -e "${NC}"
     if [[ $url = 1 ]]; then
         main
     else
         command youtube-dl ${url}
-#        if [[ $? > 0 ]]; then
-#            error
-#        else
-            downloadCompleted
-#        fi
+        downloadCompleted
     fi
     fastDl
 }
+# Config
+configOutput () {
+    echo -e "${NC}Drop the output default folder you want to set here: ${bldgrn}"
+    read -e -p "=> " FILEPATH
+    echo -e "${NC}"
+    command mkdir -p ~/.config/youtube-dl/
+    echo "-o $FILEPATH/%(title)s-%(id)s.%(ext)s" > ~/.config/youtube-dl/config
+    processCompleted
+}
 
-main () {
+# Video Selection
+playlistMenu () {
+    echo -e "${bldgrn}"
+    echo "Playlist Download Options";
+    echo -e "${NC}"
+    echo -e "${GRN}Chose an option${CY}"
+    PS3='Enter your choice: '
+    options=(
+        "Download Full Playlist"
+        "Download a range of videos on the Playlist"
+        "Download specific videos on the Playlist"
+        "Help"
+        "Quit"
+        )
+    select opt in "${options[@]}"
+    do
+        case $opt in
+            "Download Full Playlist")
+                playlistFullDl
+                break
+                ;;
+            "Download a range of videos on the Playlist")
+                playlistRangeDl
+                break
+                ;;
+            "Download specific videos on the Playlist")
+                playlistItemsDl
+                break
+                ;;
+            "Quit")
+                banner -w 28 "Bye Bye"
+                exit
+                ;;
+            *) echo "invalid option $REPLY";;
+        esac
+    done
+}
+# Download full playlist
+playlistFullDl () {
     echo ""
+    echo -e "Paste the ${undwht}link of the playlist${NC} or a ${undwht}video in the playlist${bldgrn}"
+        read -e -p "=> " url
+        echo -e "${NC}"
+        if [[ $url = 1 ]]; then
+            playlistMenu
+        else
+            command youtube-dl --yes-playlist ${url}
+            downloadCompleted
+        fi
+}
+# Download range
+playlistRangeDl () {
+    echo ""
+    echo -e "Paste the ${undwht}link of the playlist${NC} or a ${undwht}video in the playlist${bldgrn}"
+        read -e -p "=> " url
+        echo -e "${NC}"
+        if [[ $url = 1 ]]; then
+            playlistMenu
+        else
+            echo -e "${bldylw}Enter the range on the Playlist${NC}"
+            echo -e "Start at: ${bldgrn}"
+            read -e -p "leave blank to start for the firt video => " START
+            echo -e "${NC}"
+            echo -e "End at: ${bldgrn}"
+            read -e -p "leave blank to download all tothe last => " END
+            echo -e "${NC}"
+            command youtube-dl --playlist-start "$START" --playlist-end "$END" ${url}
+            downloadCompleted
+        fi
+}
+# Download indexes
+playlistItemsDl () {
+    echo ""
+    echo -e "Paste the ${undwht}link of the playlist${NC} or a ${undwht}video in the playlist${bldgrn}"
+        read -e -p "=> " url
+        echo -e "${NC}"
+        if [[ $url = 1 ]]; then
+            playlistMenu
+        else
+            echo -e "${NC}Specify indices of the videos in the playlist separated by commas like: ${bldylw}1,2,5,8${NC} if you want to download videos indexed ${bldgrn}1, 2, 5, 8${NC} in the playlist."
+            echo -e "${NC}You can specify range: ${bldylw}1-3,7,10-13${NC} it will download the videos at index ${bldgrn}1, 2, 3, 7, 10, 11, 12 ${NC}and ${bldgrn}13${NC}."
+            echo -e "Start at: ${bldgrn}"
+            read -e -p "=> " ITEMS
+            echo -e "${NC}"
+            command youtube-dl --playlist-items "$ITEMS" ${url}
+            downloadCompleted
+        fi
+}
+
+
+# Download Menu
+downloadMenu () {
+    echo -e "${GRN}"
+    echo "+-+-+-+-+-+-+-+-+";
+    echo "| Download Menu |";
+    echo -e "+-+-+-+-+-+-+-+-+${NC}";
+    echo -e "${bldgrn}Chose an option${CY}"
+    PS3='Enter your choice: '
+    options=(
+        "Fast Download"
+        "Set Default Download Location"
+        "Download Playlist"
+        "Help"
+        "Quit"
+        )
+    select opt in "${options[@]}"
+    do
+        case $opt in
+        
+            "Fast Download")
+                fastDl
+                downloadMenu
+                ;;
+            
+            "Set Default Download Location")
+                configOutput
+                downloadMenu
+                ;;
+
+            "Download Playlist")
+                playlistMenu
+                downloadMenu
+                ;;
+            
+            "Help")
+                printHelp
+                downloadMenu
+                ;;
+            
+            "Quit")
+                banner -w 28 "Bye Bye"
+                exit
+                ;;
+                
+            *) echo -e "${RED}invalid option${CY} $REPLY";;
+        esac
+    done
+}
+
+
+
+installMenu () {
+    echo -e "${GRN}"
+    echo "+-+-+-+-+-+-+-+-+";
+    echo "| Install  Menu |";
+    echo -e "+-+-+-+-+-+-+-+-+${NC}";
     echo -e "${GRN}Chose an option${CY}"
     PS3='Enter your choice: '
     options=(
@@ -173,7 +338,6 @@ main () {
         "Install Homebrew"
         "Install YouTube-Dl"
         "Install FFMpeg"
-        "Use YouTube-Dl to download a video"
         "Help"
         "Quit"
         )
@@ -218,10 +382,42 @@ main () {
                 break
                 ;;
             
-            "Use YouTube-Dl to download a video")
-                fastDl
-                processCompleted
-                main
+            "Help")
+                printHelp
+                break
+                ;;
+            
+            "Quit")
+                banner -w 28 "Bye Bye"
+                exit
+                ;;
+                
+            *) echo -e "${RED}invalid option${CY} $REPLY";;
+        esac
+    done
+}
+
+main () {
+    echo ""
+    echo -e "${GRN}Chose an option${CY}"
+    PS3='Enter your choice: '
+    options=(
+        "Download Menu"
+        "Install Dependencies"
+        "Help"
+        "Quit"
+        )
+    select opt in "${options[@]}"
+    do
+        case $opt in
+        
+            "Download Menu")
+                downloadMenu
+                break
+                ;;
+            
+            "Install Dependencies")
+                installMenu
                 break
                 ;;
             
@@ -235,10 +431,12 @@ main () {
                 exit
                 ;;
                 
-            *) echo "invalid option $REPLY";;
+            *) echo -e "${RED}invalid option${CY} $REPLY";;
         esac
     done
 }
 
+bigTit
+credit
 fastDl
 main
