@@ -174,6 +174,20 @@ fastDl () {
     fi
     fastDl
 }
+# Age restricted
+ageResDl () {
+    echo -e "${NC}"
+    echo -e "Paste the ${undwht}link of the video${NC} or type ${bldgrn}1${NC} to choose ${bldcyn}another option${NC}: ${bldgrn}"
+    read -e -p "=> " url
+    echo -e "${NC}"
+    if [[ $url = 1 ]]; then
+        main
+    else
+        command youtube-dl -n --cookies ~/Downloads/cookies.txt ${url}
+        downloadCompleted
+    fi
+    fastDl
+}
 # Config
 configOutput () {
     echo -e "${NC}Drop the output default folder you want to set here: ${bldgrn}"
@@ -284,6 +298,7 @@ downloadMenu () {
     PS3='Enter your choice: '
     options=(
         "Fast Download"
+        "Download age restricted video"
         "Set Default Download Location"
         "Download Playlist"
         "Help"
@@ -295,6 +310,11 @@ downloadMenu () {
         
             "Fast Download")
                 fastDl
+                downloadMenu
+                ;;
+                
+            "Download age restricted video")
+                ageResDl
                 downloadMenu
                 ;;
             
